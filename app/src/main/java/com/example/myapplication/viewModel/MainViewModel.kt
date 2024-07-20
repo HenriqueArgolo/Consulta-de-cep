@@ -2,12 +2,15 @@ package com.example.myapplication.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.MyAplication
 import com.example.myapplication.infra.RetrofitClient
 import com.example.myapplication.model.Adress
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.coroutineScope
 
 class MainViewModel: ViewModel() {
+    val dataBase = MyAplication.database.getAdressDao()
 
     private val _adressInfo = MutableLiveData<Adress?>()
     val adressInfo: MutableLiveData<Adress?> get() = _adressInfo
@@ -18,21 +21,24 @@ class MainViewModel: ViewModel() {
 
     suspend fun fetchAdress(cep: String){
         viewModelScope.apply {
-            val adressData = getCityinfo(cep)
+            getCityinfo(cep)
+            val adressData = dataBase.getAdress(cep)
             _adressInfo.postValue(adressData)
         }
     }
 
 
-    suspend fun getCityinfo(cep: String): Adress? {
-        return withContext(Dispatchers.IO) {
-            try {
+    suspend fun getCityinfo(cep: String){
+        CoroutineScope(Dispatchers.IO).apply {
                 val response = RetrofitClient().apiService.getLocation(cep)
-                response.body()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                null
-            }
+                if (response.isSuccessful){
+                    response.body().let {
+                        if (it != null) {
+                            dataBase.saveAdress(it)
+                        }
+                    }
+                }
+
         }
     }
 }

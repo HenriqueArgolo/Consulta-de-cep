@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -40,12 +41,14 @@ android {
 }
 
 dependencies {
+    //Retrofit Dependency
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     // Gson converter
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    // OkHttp (opcional, mas recomendado para logging e outras funcionalidades avançadas)
+    // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -58,4 +61,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    val room_version = "2.6.1"
+    // ROOM dependency
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
 }

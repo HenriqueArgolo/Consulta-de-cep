@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         search()
         viewModel.adressInfo.observe(this, Observer {data ->
             if (data != null) {
