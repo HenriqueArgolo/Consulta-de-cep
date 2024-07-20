@@ -21,9 +21,16 @@ class MainViewModel: ViewModel() {
 
     suspend fun fetchAdress(cep: String){
         viewModelScope.apply {
-            getCityinfo(cep)
             val adressData = dataBase.getAdress(cep)
-            _adressInfo.postValue(adressData)
+            if(adressData == null) {
+                getCityinfo(cep)
+                _adressInfo.postValue(adressData)
+            }else{
+                _adressInfo.postValue(adressData)
+            }
+
+
+
         }
     }
 

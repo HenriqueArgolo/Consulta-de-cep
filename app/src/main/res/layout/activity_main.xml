@@ -41,7 +41,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="100dp"
@@ -69,6 +69,7 @@
             android:layout_height="220dp"
             android:background="@drawable/rounded_board"
             android:backgroundTint="#1C1B1B"
+            android:visibility="gone"
             android:layout_margin="15dp"
             android:orientation="horizontal">
 
