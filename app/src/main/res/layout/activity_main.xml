@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.MainActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".view.MainActivity">
 
 
     <LinearLayout
@@ -24,7 +23,6 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_board"
             android:backgroundTint="#B5B0B0"
-            android:hint="Insira o CEP"
             android:padding="11dp" />
 
         <Button
@@ -33,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/rounded_board"
-            android:text="buscar" />
+            android:text="@string/Buscar" />
 
     </LinearLayout>
 
@@ -43,7 +41,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="100dp"
@@ -69,10 +67,9 @@
             android:id="@+id/data_container"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:visibility="gone"
             android:background="@drawable/rounded_board"
             android:backgroundTint="#1C1B1B"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:orientation="horizontal">
 
 
@@ -96,7 +93,6 @@
                     android:id="@+id/localidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Localidade: "
                     android:textColor="#AEABAB"
                     android:textSize="14sp" />
 
@@ -104,7 +100,6 @@
                     android:id="@+id/bairro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bairro: "
                     android:textColor="#AEABAB"
                     android:textSize="14sp" />
 
@@ -112,7 +107,6 @@
                     android:id="@+id/logradouro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Logradouro: "
                     android:textColor="#AEABAB"
                     android:textSize="14sp" />
 
@@ -120,7 +114,6 @@
                     android:id="@+id/complemento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Complemento: "
                     android:textColor="#AEABAB"
                     android:textSize="14sp" />
 
@@ -129,7 +122,6 @@
                     android:id="@+id/siafi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SIAFI: "
                     android:textColor="#AEABAB"
                     android:textSize="14sp" />
 
@@ -142,7 +134,6 @@
                         android:id="@+id/cep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CEP: "
                         android:textColor="#AEABAB"
                         android:layout_weight="1"
                         android:textSize="14sp" />
@@ -161,7 +152,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="UF: "
                         android:textColor="#AEABAB"
                         android:textSize="14sp" />
 
@@ -170,7 +160,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="IBGE: "
                         android:textColor="#AEABAB"
                         android:textSize="14sp" />
 
@@ -185,7 +174,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="GIA: "
                         android:textColor="#AEABAB"
                         android:textSize="14sp" />
 
@@ -194,7 +182,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="DDD: "
                         android:textColor="#AEABAB"
                         android:textSize="14sp" />
 
