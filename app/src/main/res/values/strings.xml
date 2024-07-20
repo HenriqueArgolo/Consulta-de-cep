@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="bairro">Bairro:</string>
+    <string name="localidade">Localidade:</string>
+    <string name="uf">UF:</string>
+    <string name="gia">GIA:</string>
+    <string name="descubra_a_qual_lugar_um_cep_pertence_com_uma_simples_busca">Descubra a qual lugar um cep pertence com uma simples busca.</string>
+</resources>
