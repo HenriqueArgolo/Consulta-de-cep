@@ -7,7 +7,6 @@ import com.example.myapplication.infra.RetrofitClient
 import com.example.myapplication.model.Adress
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 
 class MainViewModel: ViewModel() {
     val dataBase = MyAplication.database.getAdressDao()
@@ -22,11 +21,12 @@ class MainViewModel: ViewModel() {
     suspend fun fetchAdress(cep: String){
         viewModelScope.apply {
             val adressData = dataBase.getAdress(cep)
-            if(adressData == null) {
-                getCityinfo(cep)
+            if( adressData != null) {
                 _adressInfo.postValue(adressData)
             }else{
-                _adressInfo.postValue(adressData)
+                getCityinfo(cep)
+                val newAdressData = dataBase.getAdress(cep)
+                _adressInfo.postValue(newAdressData)
             }
 
 
