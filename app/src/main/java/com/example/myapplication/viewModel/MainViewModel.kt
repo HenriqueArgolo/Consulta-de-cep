@@ -1,4 +1,6 @@
 package com.example.myapplication.viewModel
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +9,7 @@ import com.example.myapplication.infra.RetrofitClient
 import com.example.myapplication.model.Adress
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
     val dataBase = MyAplication.database.getAdressDao()
@@ -24,7 +27,7 @@ class MainViewModel: ViewModel() {
             if( adressData != null) {
                 _adressInfo.postValue(adressData)
             }else{
-                getCityinfo(cep)
+                getCityInfo(cep)
                 val newAdressData = dataBase.getAdress(cep)
                 _adressInfo.postValue(newAdressData)
             }
@@ -35,17 +38,19 @@ class MainViewModel: ViewModel() {
     }
 
 
-    suspend fun getCityinfo(cep: String){
-        CoroutineScope(Dispatchers.IO).apply {
+    suspend fun getCityInfo(cep: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
                 val response = RetrofitClient().apiService.getLocation(cep)
-                if (response.isSuccessful){
-                    response.body().let {
-                        if (it != null) {
-                            dataBase.saveAdress(it)
-                        }
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        dataBase.saveAdress(it)
                     }
                 }
-
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
+
 }

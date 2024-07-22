@@ -1,7 +1,9 @@
 package com.example.myapplication.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.viewModel.MainViewModel
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity() {
             if (data != null) {
                 binding.information.visibility = View.GONE
                 binding.dataContainer.visibility = View.VISIBLE
-                bindLayout(data)}
+                bindLayout(data)
+            }else{
+                Log.d("Erro","bad request" )
+            }
+
             })
 
     }
